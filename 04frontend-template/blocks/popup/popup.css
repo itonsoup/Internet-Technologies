@@ -21,3 +21,30 @@
   right: 0;
   z-index: 10;
 }
+
+/* Стили для инпута с ошибкой */
+.popup__input_type_error {
+  border-color: #ff0000; /* Красный цвет рамки для инпута с ошибкой */
+}
+
+/* Стили для ошибки */
+.popup__error {
+  font-size: 12px;
+  color: #ff0000; 
+  margin-top: 5px;
+  display: none; 
+}
+
+/* Стили для видимой ошибки */
+.popup__error_visible {
+  display: block; 
+}
+
+/* Стили для отключенной кнопки */
+.popup__button_disabled {
+  background-color: rgba(255, 255, 255, 0.6); /* Белый цвет с прозрачностью 0.6 */
+  border: 1px solid #000000; /* Чёрная окантовка */
+  color: #000000; /* Чёрный текст */
+  cursor: not-allowed; /* Неактивный курсор */
+  pointer-events: none; /* Отключаем все события */
+}

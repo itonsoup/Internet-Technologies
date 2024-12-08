@@ -54,12 +54,23 @@ editButton.addEventListener('click', () => {
 
 // Закрытие поп-апа
 const closeButtons = document.querySelectorAll('.popup__close');
+const popups = document.querySelectorAll('.popup');
 closeButtons.forEach((button) => {
   button.addEventListener('click', (event) => {
     const popup = event.target.closest('.popup');
     closeModal(popup);
   });
 });
+
+// Закрытие поп-апа по клику на фон
+popups.forEach((popup) => {
+  popup.addEventListener('click', (event) => {
+    if (event.target === popup) {
+      closeModal(popup);
+    }
+  });
+});
+
 
 const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
@@ -107,4 +118,3 @@ placesList.addEventListener('click', (event) => {
       openModal(imagePopup);
     }
   });
-  

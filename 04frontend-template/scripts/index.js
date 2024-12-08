@@ -67,6 +67,10 @@ editButton.addEventListener('click', () => {
 // Закрытие поп-апа
 const closeButtons = document.querySelectorAll('.popup__close');
 const popups = document.querySelectorAll('.popup');
+popups.forEach((popup) => {
+  popup.classList.add('popup_is-animated');
+});
+
 closeButtons.forEach((button) => {
   button.addEventListener('click', (event) => {
     const popup = event.target.closest('.popup');

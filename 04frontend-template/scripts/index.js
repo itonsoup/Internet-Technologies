@@ -60,3 +60,40 @@ closeButtons.forEach((button) => {
     closeModal(popup);
   });
 });
+
+const profileName = document.querySelector('.profile__title');
+const profileDescription = document.querySelector('.profile__description');
+const nameInput = document.querySelector('.popup__input_type_name');
+const descriptionInput = document.querySelector('.popup__input_type_description');
+
+editButton.addEventListener('click', () => {
+  nameInput.value = profileName.textContent;
+  descriptionInput.value = profileDescription.textContent;
+  openModal(profilePopup);
+});
+
+const profileForm = document.forms['edit-profile'];
+profileForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileDescription.textContent = descriptionInput.value;
+  closeModal(profilePopup);
+});
+
+const cardForm = document.forms['new-place'];
+const placeNameInput = cardForm.querySelector('.popup__input_type_card-name');
+const placeLinkInput = cardForm.querySelector('.popup__input_type_url');
+const addCardButton = document.querySelector('.profile__add-button');
+
+addCardButton.addEventListener('click', () => {
+  openModal(cardPopup);
+});
+
+cardForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const newCard = createCard({ name: placeNameInput.value, link: placeLinkInput.value });
+  placesList.prepend(newCard);
+  cardForm.reset();
+  closeModal(cardPopup);
+});
+

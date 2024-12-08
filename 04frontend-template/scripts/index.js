@@ -97,3 +97,14 @@ cardForm.addEventListener('submit', (event) => {
   closeModal(cardPopup);
 });
 
+placesList.addEventListener('click', (event) => {
+    if (event.target.classList.contains('card__image')) {
+      const popupImage = imagePopup.querySelector('.popup__image');
+      const popupCaption = imagePopup.querySelector('.popup__caption');
+      popupImage.src = event.target.src;
+      popupImage.alt = event.target.alt;
+      popupCaption.textContent = event.target.alt;
+      openModal(imagePopup);
+    }
+  });
+  

@@ -132,4 +132,3 @@ placesList.addEventListener('click', (event) => {
       openModal(imagePopup);
     }
   });
-

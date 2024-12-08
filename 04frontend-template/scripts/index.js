@@ -1,13 +1,3 @@
-// @todo: Темплейт карточки
-
-// @todo: DOM узлы
-
-// @todo: Функция создания карточки
-
-// @todo: Функция удаления карточки
-
-// @todo: Вывести карточки на страницу
-
 import { initialCards } from './cards.js';
 
 const cardTemplate = document.querySelector('#card-template').content;
@@ -58,7 +48,7 @@ function closeModal(popup) {
   popup.classList.remove('popup_is-opened');
 }
 
-// Пример: кнопка открытия поп-апа редактирования профиля
+// Кнопка открытия поп-апа редактирования профиля
 const editButton = document.querySelector('.profile__edit-button');
 editButton.addEventListener('click', () => {
   openModal(profilePopup);

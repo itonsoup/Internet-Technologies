@@ -71,6 +71,16 @@ popups.forEach((popup) => {
   });
 });
 
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    const openPopup = document.querySelector('.popup_is-opened');
+    if (openPopup) {
+      closeModal(openPopup);
+    }
+  }
+});
+
+
 
 const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');

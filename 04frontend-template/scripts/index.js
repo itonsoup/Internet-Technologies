@@ -33,4 +33,30 @@ function renderInitialCards(cards) {
 }
 
 renderInitialCards(initialCards);
-  
+
+const profilePopup = document.querySelector('.popup_type_edit');
+const cardPopup = document.querySelector('.popup_type_new-card');
+const imagePopup = document.querySelector('.popup_type_image');
+
+function openModal(popup) {
+  popup.classList.add('popup_is-opened');
+}
+
+function closeModal(popup) {
+  popup.classList.remove('popup_is-opened');
+}
+
+// Пример: кнопка открытия поп-апа редактирования профиля
+const editButton = document.querySelector('.profile__edit-button');
+editButton.addEventListener('click', () => {
+  openModal(profilePopup);
+});
+
+// Закрытие поп-апа
+const closeButtons = document.querySelectorAll('.popup__close');
+closeButtons.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    const popup = event.target.closest('.popup');
+    closeModal(popup);
+  });
+});

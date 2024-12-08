@@ -132,3 +132,85 @@ placesList.addEventListener('click', (event) => {
       openModal(imagePopup);
     }
   });
+
+  // Функция отображения ошибки
+function showInputError(formElement, inputElement, errorMessage, settings) {
+  const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
+  inputElement.classList.add(settings.inputErrorClass);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(settings.errorClass);
+}
+
+// Функция скрытия ошибки
+function hideInputError(formElement, inputElement, settings) {
+  const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
+  inputElement.classList.remove(settings.inputErrorClass);
+  errorElement.textContent = '';
+  errorElement.classList.remove(settings.errorClass);
+}
+
+// Функция проверки валидности поля
+function checkInputValidity(formElement, inputElement, settings) {
+  if (!inputElement.validity.valid) {
+      if (inputElement.name === 'place-name') {
+          showInputError(formElement, inputElement, 'Вы пропустили это поле', settings);
+      } else if (inputElement.name === 'link') {
+          showInputError(formElement, inputElement, 'Введите адрес сайта', settings);
+      } else {
+          showInputError(formElement, inputElement, inputElement.validationMessage, settings);
+      }
+  } else {
+      hideInputError(formElement, inputElement, settings);
+  }
+}
+
+// Функция переключения состояния кнопки
+function toggleButtonState(inputList, buttonElement, settings) {
+  const hasInvalidInput = inputList.some((inputElement) => !inputElement.validity.valid);
+  if (hasInvalidInput) {
+      buttonElement.setAttribute('disabled', true);
+      buttonElement.classList.add(settings.inactiveButtonClass);
+  } else {
+      buttonElement.removeAttribute('disabled');
+      buttonElement.classList.remove(settings.inactiveButtonClass);
+  }
+}
+
+// Установка слушателей на форму
+function setEventListeners(formElement, settings) {
+  const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+  const buttonElement = formElement.querySelector(settings.submitButtonSelector);
+
+  toggleButtonState(inputList, buttonElement, settings);
+
+  inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', () => {
+          checkInputValidity(formElement, inputElement, settings);
+          toggleButtonState(inputList, buttonElement, settings);
+      });
+  });
+}
+
+// Включение валидации для всех форм
+function enableValidation(settings) {
+  const formList = Array.from(document.querySelectorAll(settings.formSelector));
+  formList.forEach((formElement) => {
+      formElement.addEventListener('submit', (evt) => {
+          evt.preventDefault();
+      });
+      setEventListeners(formElement, settings);
+  });
+}
+
+// Создание объекта с настройками валидации
+const validationSettings = {
+  formSelector: '.popup__form',   // Селектор всех форм
+  inputSelector: '.popup__input', // Селектор всех инпутов
+  submitButtonSelector: '.popup__button', // Селектор кнопки отправки
+  inactiveButtonClass: 'popup__button_disabled', // Класс для отключенной кнопки
+  inputErrorClass: 'popup__input_type_error',  // Класс для инпута с ошибкой
+  errorClass: 'popup__error_visible'  // Класс для видимой ошибки
+};
+
+// Включение валидации
+enableValidation(validationSettings);

@@ -1,14 +1,14 @@
 export const initialCards = [
     {
-      name: "Архыз",
+      name: "Сентинский храм",
       link: "http://127.0.0.1:63479/card_1.jpg",
     },
     {
-      name: "Челябинская область",
+      name: "Кавказ",
       link: "http://127.0.0.1:63479/card_2.jpg",
     },
     {
-      name: "Иваново",
+      name: "Домбай",
       link: "http://127.0.0.1:63479/card_3.jpg",
     },
     {

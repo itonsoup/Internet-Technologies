@@ -1,7 +1,7 @@
 export const initialCards = [
     {
       name: "Сентинский храм",
-      link: "http://127.0.0.1:53470/card_1.jpg",
+      link: "http://127.0.0.1:55215/card_1.jpg",
     },
     {
       name: "Кавказ",
